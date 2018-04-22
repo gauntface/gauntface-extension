@@ -6,6 +6,11 @@ function copyTest() {
   .pipe(gulp.dest(path.join(global.__buildConfig.temp, 'test', 'static')));
 }
 
+function copySrc() {
+  return gulp.src(path.posix.join(__dirname, '..', 'src', '**', `*.json`))
+  .pipe(gulp.dest(path.join(global.__buildConfig.dest)));
+}
+
 module.exports = {
-  build: copyTest,
+  build: gulp.parallel([copyTest, copySrc]),
 };

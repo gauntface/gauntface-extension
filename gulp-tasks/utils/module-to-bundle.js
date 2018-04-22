@@ -6,6 +6,8 @@ const rollup = require('rollup');
 const rollupStream = require('rollup-stream');
 const uglifyPlugin = require('rollup-plugin-uglify');
 const sourcemapPlugin = require('rollup-plugin-sourcemaps');
+const resolve = require('rollup-plugin-node-resolve');
+const commonjs = require('rollup-plugin-commonjs');
 const esMinify = require('uglify-es').minify;
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
@@ -21,6 +23,13 @@ function processScript(moduleFile, relativePath, destDir) {
       name: 'hopin.logger',
     },
     plugins: [
+      // Enable rollup to resolve node modules
+      resolve({
+        module: true,
+        browser: true,
+      }),
+      // Converts commonjs to ES6 modules
+      commonjs(),
       // This module enabled Rollup to *ingest* a sourcemap to apply
       // further manipulations
       sourcemapPlugin(),

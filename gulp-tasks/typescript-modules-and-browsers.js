@@ -6,10 +6,10 @@ const {npmRun} = require('./utils/npm-run');
 const {moduleToBundle} = require('./utils/module-to-bundle');
 
 async function bundleBrowserModules() {
-  const modulesDir = path.join(global.__buildConfig.dest, 'modules', 'browser');
-  const browserDir = path.join(global.__buildConfig.dest, 'iife', 'browser');
+  const modulesDir = path.join(global.__buildConfig.dest);
+  const browserDir = path.join(global.__buildConfig.dest);
 
-  await moduleToBundle(path.join(modulesDir, 'index.js'), browserDir);
+  await moduleToBundle(path.join(modulesDir, 'background.js'), browserDir);
 }
 
 async function build() {

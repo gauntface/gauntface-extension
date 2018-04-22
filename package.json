@@ -10,7 +10,7 @@
     "lint": "tslint 'src/**/*'",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls",
     "test": "npm run build && npm run ava && npm run lint",
-    "typescript:commonjs": "tsc -p ./tsconfigs/commonjs.json --declaration",
+    "typescript:modules": "tsc -p ./tsconfigs/modules.json --declaration",
     "typescript:test": "tsc -p ./tsconfigs/test.json",
     "version": "echo 'TODO: ./build-docs && git add docs'"
   },
@@ -40,6 +40,8 @@
     "nyc": "11.6.0",
     "puppeteer": "1.2.0",
     "rollup": "0.57.1",
+    "rollup-plugin-commonjs": "^9.1.0",
+    "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-sourcemaps": "0.4.2",
     "rollup-plugin-uglify": "3.0.0",
     "rollup-stream": "1.24.1",
@@ -55,5 +57,9 @@
   ],
   "author": "gauntface",
   "license": "Apache-2.0",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "dependencies": {
+    "@hopin/logger": "0.0.3",
+    "webextension-polyfill-ts": "^0.8.3"
+  }
 }
