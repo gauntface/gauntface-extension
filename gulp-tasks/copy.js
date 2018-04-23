@@ -7,7 +7,7 @@ function copyTest() {
 }
 
 function copySrc() {
-  return gulp.src(path.posix.join(__dirname, '..', 'src', '**', `*.json`))
+  return gulp.src(path.posix.join(__dirname, '..', 'src', '**', `*.{json,html,css}`))
   .pipe(gulp.dest(path.join(global.__buildConfig.dest)));
 }
 

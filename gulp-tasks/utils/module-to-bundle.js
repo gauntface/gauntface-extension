@@ -20,7 +20,6 @@ function processScript(moduleFile, relativePath, destDir) {
       format: 'iife',
       sourcemap: true,
       name: path.basename(moduleFile),
-      name: 'hopin.logger',
     },
     plugins: [
       // Enable rollup to resolve node modules

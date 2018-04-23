@@ -1,7 +1,7 @@
 import { browser } from 'webextension-polyfill-ts';
-import {onInstalled} from './controllers/onInstalled';
-import {onWindowCreated, onWindowRemoved} from './controllers/windowController';
-import {logger} from './utils/logger';
+import {onInstalled} from './controllers/lifecycle-controller';
+import {onWindowCreated, onWindowRemoved} from './controllers/window-controller';
+import './application';
 
 async function start() {
   browser.windows.onCreated.addListener(onWindowCreated);

@@ -1,5 +1,5 @@
-import {logger} from '../utils/logger';
 import { browser } from 'webextension-polyfill-ts';
+import {logger} from '../utils/logger';
 
 export async function configurePinnedTabs(windowId: number) {
   const urlsToPin = [

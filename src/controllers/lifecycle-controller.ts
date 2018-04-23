@@ -1,5 +1,5 @@
 import { Runtime } from 'webextension-polyfill-ts';
-import {initWindowController} from './windowController';
+import {initWindowController} from './window-controller';
 import {logger} from '../utils/logger';
 
 // tslint:disable-next-line:no-any
