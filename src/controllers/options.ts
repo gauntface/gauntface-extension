@@ -8,34 +8,72 @@ function hideAllPages() {
   }
 }
 
-function showErrorPage(msg: string) {
+function showPage(className: string) {
   hideAllPages();
-  const errorPage = document.querySelector('.js-error');
-  errorPage.classList.remove('is-hidden');
+  const page = document.querySelector(`.${className}`);
+  page.classList.remove('is-hidden');
+}
+
+function showErrorPage(msg: string) {
+  showPage('js-error');
 
   const errorMsg = document.querySelector('.js-error__msg');
   errorMsg.textContent = msg;
 }
 
 function showOptionsPage(user: UserDetails) {
-  hideAllPages();
+  showPage('js-options');
+}
 
-  const optionsPage = document.querySelector('.js-options');
-  optionsPage.classList.remove('is-hidden');
+function showLoadingPage() {
+  showPage('js-loading');
+}
+
+function showSignInPage() {
+  showPage('js-sign-in');
+
+  const signinBtn = document.querySelector('.js-sign-in-btn');
+  signinBtn.removeAttribute('disabled');
+}
+
+async function signinUser() {
+  const signinBtn = document.querySelector('.js-sign-in-btn');
+  try {
+    showLoadingPage();
+
+    let currentUser = null;
+    try {
+      currentUser = await signinToGithub();
+    } catch (err) {
+      logger.error(`Unable to sign in.`, err);
+      return showErrorPage(err.message);
+    }
+
+    if (!currentUser) {
+      return showErrorPage('Unable to get user info');
+    }
+
+    showOptionsPage(currentUser);
+  } catch (err) {
+
+  } finally {
+    signinBtn.removeAttribute('disabled');
+  }
 }
 
 window.addEventListener('load', async () => {
-  let currentUser = null;
-  try {
-    currentUser = await signinToGithub();
-  } catch (err) {
-    logger.error(`Unable to sign in.`, err);
-    return showErrorPage(err.message);
-  }
+  const signinBtn = document.querySelector('.js-sign-in-btn');
+  signinBtn.setAttribute('disabled', 'true');
+  signinBtn.addEventListener('click', signinUser);
 
-  if (!currentUser) {
-    return showErrorPage('Unable to get user info');
+  const currentUser = await getCurrentUser();
+  if (currentUser) {
+    showOptionsPage({
+      displayName: 'Test Name',
+      photoURL: '',
+      uid: '1234',
+    });
+  } else {
+    showSignInPage();
   }
-
-  showOptionsPage(currentUser);
 });

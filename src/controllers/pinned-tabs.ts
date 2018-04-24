@@ -3,7 +3,13 @@ import {logger} from '../utils/logger';
 import {getUrlsToPin} from '../models/pinned-tabs';
 
 export async function configurePinnedTabs(windowId: number) {
+  try {
   const urlsToPin = await getUrlsToPin('0');
+
+  const allTabs = await browser.tabs.query({
+    windowId,
+  });
+  console.log(`windowId`, windowId, allTabs);
 
   for (let i = 0; i < urlsToPin.length; i++) {
     const url = urlsToPin[i];
@@ -12,6 +18,8 @@ export async function configurePinnedTabs(windowId: number) {
       url: `${url}*`,
       pinned: true,
     });
+
+    logger.log(`For URL: ${url}, got matches: `, matchingTabs);
 
     if (matchingTabs.length > 0) {
       const tabToRepurpose = matchingTabs[0];
@@ -23,7 +31,7 @@ export async function configurePinnedTabs(windowId: number) {
         await browser.tabs.remove(matchingTabs[j].id);
       }
     } else {
-      await browser.tabs.create({
+      /* await browser.tabs.create({
         // Don't force focus on it.
         active: false,
         // Position in a specific order
@@ -32,7 +40,10 @@ export async function configurePinnedTabs(windowId: number) {
         pinned: true,
         // Provide URL of the tab
         url,
-      });
+      });**/
     }
   }
+} catch (err) {
+  logger.error(err);
+}
 }

@@ -3,6 +3,7 @@ import {logger} from '../utils/logger';
 import { configurePinnedTabs } from "./pinned-tabs";
 
 export async function initWindowController() {
+  logger.debug('Initialising window controller');
   const allWindows = await browser.windows.getAll();
   for (const window of allWindows) {
     await configurePinnedTabs(window.id);
@@ -10,9 +11,8 @@ export async function initWindowController() {
 }
 
 export async function onWindowCreated(window: Windows.Window) {
-  await configurePinnedTabs(window.id);
-}
-
-export async function onWindowRemoved(windowId: number) {
-  // NOOP
+  logger.debug('New window created');
+  if (window.type === 'normal') {
+    await configurePinnedTabs(window.id);
+  }
 }

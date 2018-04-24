@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Arvo');
 @import "./components/loader.css";
 
 html {
@@ -13,6 +14,46 @@ html, body {
 body {
   width: 100%;
   min-height: 100%;
+
+  background-color: #ede401;
+  color: #fc4353;
+
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6, button, .button, a {
+  font-family: 'Arvo', serif;
+}
+
+header {
+  color: #f9ffff;
+}
+
+header h1 {
+  font-size: 3.6em;
+  margin: 0;
+}
+
+button {
+  background-color: white;
+  color: #ede401;
+  border: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 12px;
+  cursor: pointer;
+  outline: none;
+}
+
+.page.sign-in, .page.error {
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .page.loading {
@@ -21,6 +62,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.page.options {
+  width: 100%;
+  min-height: 100%;
+  padding: 24px 0;
+  box-sizing: border-box;
+}
+
+.page.options header, .page.options main {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .page.is-hidden {

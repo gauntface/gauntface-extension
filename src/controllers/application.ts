@@ -1,7 +1,7 @@
 import * as firebase from 'firebase';
 import { browser } from 'webextension-polyfill-ts';
 import {onInstalled} from './lifecycle-controller';
-import {onWindowCreated, onWindowRemoved} from './window-controller';
+import {onWindowCreated} from './window-controller';
 
 // This class represents the "Application". It essentially
 // acts as a single place to store shared information.
@@ -15,9 +15,8 @@ export class Application {
   }
 
   private setupEventListeners() {
-    browser.windows.onCreated.addListener(onWindowCreated);
-    browser.windows.onRemoved.addListener(onWindowRemoved);
     browser.runtime.onInstalled.addListener(onInstalled);
+    browser.windows.onCreated.addListener(onWindowCreated);
   }
 
   private initFirebase() {

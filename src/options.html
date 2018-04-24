@@ -5,31 +5,55 @@
     </head>
     <body>
       <!-- Loading -->
-      <section class="page loading js-loading">
+      <section class="page loading js-loading is-hidden">
         <div class="loader">Loading</div>
       </section>
 
       <!-- Error -->
-      <section class="page error js-error">
-          <h1>Oops...</h1>
-          <p class="js-error__msg"></p>
-        </section>
+      <section class="page error js-error is-hidden">
+        <div>
+          <header>
+            <h1>Oops...</h1>
+          </header>
+          <main>
+          <h2 class="js-error__msg"></h2>
+          </main>
+        </div>
+      </section>
 
       <!-- Sign In -->
-      <!-- <section class="page js-sign-in is-hidden">
-        <h1>Please Sign In</h1>
-        <button class= "">Sign In</button>
-      </section> -->
+      <section class="page sign-in js-sign-in is-hidden">
+        <div>
+          <header>
+            <h1>Hello.</h1>
+            <h2>Please sign in to begin</h2>
+          </header>
+
+          <main>
+            <button class= "js-sign-in-btn">Sign In</button>
+          </main>
+        </div>
+      </section>
 
       <!-- Options Page -->
-      <section class="page js-options is-hidden">
-        <nav>
-          <ul>
-            <li>Pinned Tabs</li>
-          </ul>
-        </nav>
+      <section class="page options js-options is-hidden">
+        <header>
+          <h1>Options</h1>
+          <nav>
+              <ul>
+                <li>Pinned Tabs</li>
+              </ul>
+            </nav>
+        </header>
+
         <main>
-          <h1>Gauntface Extension / Options</h1>
+          <p>Please add the URLs of tabs you would like to have permenantly
+            pinned.</p>
+          <ul>
+            <li>https://gmail.com/</li>
+            <li>https://calendar.google.com/</li>
+          </ul>
+          <button class="js-add-item">Add URL</button>
         </main>
       </section>
 
