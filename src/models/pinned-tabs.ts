@@ -1,18 +1,11 @@
 import {logger} from '../utils/logger';
+import {browser} from 'webextension-polyfill-ts';
 
-function getDocRef(userId: string): string {
-  return `pinned-urls/${userId}`;
-}
+export async function getUrlsToPin(): Promise<string[]> {
+  const result = await browser.storage.sync.get('pinned-tabs');
+  if (result['pinned-tabs']) {
+    return result['pinned-tabs'];
+  }
 
-export async function getUrlsToPin(userId: string): Promise<string[]> {
-  // UrlsToPin
-  //   - <User ID>
-  //     (urls: string[])
-  logger.log(`TODO: getDocRef: `, getDocRef(userId));
-
-  return [
-    'https://inbox.google.com/',
-    'https://tweetdeck.twitter.com/',
-    'https://open.spotify.com/'
-  ];
+  return [];
 }
