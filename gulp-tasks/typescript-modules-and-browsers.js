@@ -9,7 +9,13 @@ async function bundleBrowserModules() {
   const modulesDir = path.join(global.__buildConfig.dest);
   const browserDir = path.join(global.__buildConfig.dest);
 
-  await moduleToBundle(path.join(modulesDir, 'background.js'), browserDir);
+  const entryPoints = [
+    'application.js',
+    'options.js',
+  ];
+  await Promise.all(entryPoints.map((filename) => {
+    return moduleToBundle(path.join(modulesDir, 'controllers', filename), path.join(browserDir, 'controllers'));
+  }));
 }
 
 async function build() {

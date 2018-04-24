@@ -1,0 +1,39 @@
+<html>
+    <head>
+      <title>Gauntface Extension / Options</title>
+      <link rel="stylesheet" type="text/css" href="./styles/options.css">
+    </head>
+    <body>
+      <!-- Loading -->
+      <section class="page loading js-loading">
+        <div class="loader">Loading</div>
+      </section>
+
+      <!-- Error -->
+      <section class="page error js-error">
+          <h1>Oops...</h1>
+          <p class="js-error__msg"></p>
+        </section>
+
+      <!-- Sign In -->
+      <!-- <section class="page js-sign-in is-hidden">
+        <h1>Please Sign In</h1>
+        <button class= "">Sign In</button>
+      </section> -->
+
+      <!-- Options Page -->
+      <section class="page js-options is-hidden">
+        <nav>
+          <ul>
+            <li>Pinned Tabs</li>
+          </ul>
+        </nav>
+        <main>
+          <h1>Gauntface Extension / Options</h1>
+        </main>
+      </section>
+
+      <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+      <script src="./controllers/options.js" async></script>
+    </body>
+  </html>

@@ -1,12 +1,9 @@
 import { browser } from 'webextension-polyfill-ts';
 import {logger} from '../utils/logger';
+import {getUrlsToPin} from '../models/pinned-tabs';
 
 export async function configurePinnedTabs(windowId: number) {
-  const urlsToPin = [
-    'https://inbox.google.com/',
-    'https://tweetdeck.twitter.com/',
-    'https://open.spotify.com/'
-  ];
+  const urlsToPin = await getUrlsToPin('0');
 
   for (let i = 0; i < urlsToPin.length; i++) {
     const url = urlsToPin[i];

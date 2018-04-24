@@ -10,5 +10,9 @@ export async function getUrlsToPin(userId: string): Promise<string[]> {
   //     (urls: string[])
   logger.log(`TODO: getDocRef: `, getDocRef(userId));
   
-  return [];
+  return [
+    'https://inbox.google.com/',
+    'https://tweetdeck.twitter.com/',
+    'https://open.spotify.com/'
+  ];
 }
