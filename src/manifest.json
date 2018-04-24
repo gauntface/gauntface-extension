@@ -13,5 +13,15 @@
   "permissions": [
     "tabs",
     "storage"
-  ]
+  ],
+  "key": "-----BEGIN PUBLIC KEY-----
+  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxHYS1eVq8k3q0qABr7Z2
+  iUQvRSJVz7ND5pwdw7V+bptUqourq5iYy2g0z116wsIVf0UQgE0cvbXZbZ9Dt88/
+  Gp8VLpE6BR6d/fEeNb7Xl+PZ8QreolLicZfpa/2DscK62SQKVD9CheygDTCYX4/6
+  RhJeC9jDIEePxrvaLgJIvW75Eb6C5MH0sn8308AByXjhuKNCU5NSTq4oVEQv7srp
+  jxsXJPURiUyxN0dNPB2Sv+I+zyB5awR8+RQI8rh7qA1ydYGjEQsWeDZMQ1IZhfF2
+  cJsZXo/0wNkxuzMOYyNXQ9/u6AhZVwo8SjUpN3xPKoV3uq2oOKlKi5zRf0RqMlM9
+  lQIDAQAB
+  -----END PUBLIC KEY-----
+  "
 }
