@@ -25,14 +25,12 @@ function showOptionsPage(user: UserDetails) {
 }
 
 window.addEventListener('load', async () => {
-  let currentUser = await getCurrentUser();
-  if (!currentUser) {
-    try {
-      currentUser = await signinToGithub();
-    } catch (err) {
-      logger.error(`Unable to sign in.`, err);
-      return showErrorPage(err.message);
-    }
+  let currentUser = null;
+  try {
+    currentUser = await signinToGithub();
+  } catch (err) {
+    logger.error(`Unable to sign in.`, err);
+    return showErrorPage(err.message);
   }
 
   if (!currentUser) {
