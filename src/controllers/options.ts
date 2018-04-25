@@ -24,10 +24,15 @@ function showErrorPage(msg: string) {
 }
 
 async function showOptionsPage(editMode = false) {
-  const urlsToPin = await getUrlsToPin();
+  let urlsToPin = await getUrlsToPin();
   const pinnedTabsList = document.querySelector('.js-pinned-tabs');
   while (pinnedTabsList.firstChild) {
     pinnedTabsList.removeChild(pinnedTabsList.firstChild);
+  }
+
+  // In edit mode we need at least 1 li element to allow editing.
+  if (editMode && urlsToPin.length === 0) {
+    urlsToPin = ['https://......'];
   }
 
   for (const url of urlsToPin) {
