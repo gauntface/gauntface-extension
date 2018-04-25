@@ -2,6 +2,7 @@
     <head>
       <title>Gauntface Extension / Options</title>
       <link rel="stylesheet" type="text/css" href="./styles/options.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
     <body>
       <!-- Loading -->
@@ -21,39 +22,24 @@
         </div>
       </section>
 
-      <!-- Sign In -->
-      <section class="page sign-in js-sign-in is-hidden">
-        <div>
-          <header>
-            <h1>Hello.</h1>
-            <h2>Please sign in to begin</h2>
-          </header>
-
-          <main>
-            <button class= "js-sign-in-btn">Sign In</button>
-          </main>
-        </div>
-      </section>
-
       <!-- Options Page -->
       <section class="page options js-options is-hidden">
         <header>
           <h1>Options</h1>
           <nav>
               <ul>
-                <li>Pinned Tabs</li>
+                <li class="is-selected">Pinned Tabs</li>
               </ul>
             </nav>
         </header>
 
         <main>
-          <p>Please add the URLs of tabs you would like to have permenantly
-            pinned.</p>
-          <ul>
-            <li>https://gmail.com/</li>
-            <li>https://calendar.google.com/</li>
-          </ul>
-          <button class="js-add-item">Add URL</button>
+          <section>
+            <p>Please add the URLs of tabs you would like to have permenantly
+              pinned.</p>
+            <ul class="pinned-tabs js-pinned-tabs"></ul>
+            <div class="js-pinned-tabs-controls"></div>
+          </section>
         </main>
       </section>
 

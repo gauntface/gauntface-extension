@@ -9,3 +9,9 @@ export async function getUrlsToPin(): Promise<string[]> {
 
   return [];
 }
+
+export async function setUrlsToPin(urls: string[]) {
+  await browser.storage.sync.set({
+    'pinned-tabs': urls,
+  });
+}
