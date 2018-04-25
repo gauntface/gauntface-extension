@@ -1,9 +1,8 @@
 {
   "name": "Gauntface Extension",
   "description" : "Personal Extension for @gauntface",
-  "version": "1.0",
+  "version": "1.1",
   "manifest_version": 2,
-  "key": "aaoghaleokiofdkongaoaohophpopalg",
   "options_page": "options.html",
   "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://apis.google.com; object-src 'self'",
   "background": {
@@ -14,14 +13,5 @@
     "tabs",
     "storage"
   ],
-  "key": "-----BEGIN PUBLIC KEY-----
-  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxHYS1eVq8k3q0qABr7Z2
-  iUQvRSJVz7ND5pwdw7V+bptUqourq5iYy2g0z116wsIVf0UQgE0cvbXZbZ9Dt88/
-  Gp8VLpE6BR6d/fEeNb7Xl+PZ8QreolLicZfpa/2DscK62SQKVD9CheygDTCYX4/6
-  RhJeC9jDIEePxrvaLgJIvW75Eb6C5MH0sn8308AByXjhuKNCU5NSTq4oVEQv7srp
-  jxsXJPURiUyxN0dNPB2Sv+I+zyB5awR8+RQI8rh7qA1ydYGjEQsWeDZMQ1IZhfF2
-  cJsZXo/0wNkxuzMOYyNXQ9/u6AhZVwo8SjUpN3xPKoV3uq2oOKlKi5zRf0RqMlM9
-  lQIDAQAB
-  -----END PUBLIC KEY-----
-  "
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxHYS1eVq8k3q0qABr7Z2iUQvRSJVz7ND5pwdw7V+bptUqourq5iYy2g0z116wsIVf0UQgE0cvbXZbZ9Dt88/Gp8VLpE6BR6d/fEeNb7Xl+PZ8QreolLicZfpa/2DscK62SQKVD9CheygDTCYX4/6RhJeC9jDIEePxrvaLgJIvW75Eb6C5MH0sn8308AByXjhuKNCU5NSTq4oVEQv7srpjxsXJPURiUyxN0dNPB2Sv+I+zyB5awR8+RQI8rh7qA1ydYGjEQsWeDZMQ1IZhfF2cJsZXo/0wNkxuzMOYyNXQ9/u6AhZVwo8SjUpN3xPKoV3uq2oOKlKi5zRf0RqMlM9lQIDAQAB"
 }
