@@ -1,4 +1,3 @@
-import {signinToGithub, getCurrentUser, UserDetails} from './auth-controller';
 import {logger} from '../utils/logger';
 import { browser } from 'webextension-polyfill-ts';
 import { initPinnedTabs } from './options/pinned-tabs';

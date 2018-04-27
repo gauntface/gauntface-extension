@@ -16,7 +16,6 @@ function processScript(moduleFile, relativePath, destDir) {
   return rollupStream({
     rollup,
     input: moduleFile,
-    external: ['firebase'],
     output: {
       format: 'iife',
       sourcemap: true,
