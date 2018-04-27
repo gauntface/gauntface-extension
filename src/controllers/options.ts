@@ -2,6 +2,7 @@ import {signinToGithub, getCurrentUser, UserDetails} from './auth-controller';
 import {logger} from '../utils/logger';
 import { browser } from 'webextension-polyfill-ts';
 import { getUrlsToPin, setUrlsToPin } from '../models/pinned-tabs';
+import { updateAllWindows } from './window-controller';
 
 function hideAllPages() {
   const pages = document.querySelectorAll('.page');
@@ -64,6 +65,7 @@ async function showOptionsPage(editMode = false) {
       }
 
       await setUrlsToPin(newUrls);
+      await updateAllWindows();
 
       showOptionsPage(false);
     });
