@@ -1,0 +1,25 @@
+.popup-window-urls {
+  list-style: none;
+  margin: 12px 0;
+  padding: 0;
+  outline: none;
+}
+
+.popup-window-urls[contenteditable=true] {
+  border: solid;
+  padding: 12px;
+  box-sizing:border-box;
+}
+
+.popup-window-urls[contenteditable=true]:after {
+  content: '...pst, hit a new line to add a URL';
+  display: block;
+  text-align: right;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: rgb(255, 255, 255);
+}
+
+.popup-window-urls li {
+  font-size: 1.4em;
+}

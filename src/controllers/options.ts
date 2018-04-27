@@ -1,8 +1,8 @@
 import {signinToGithub, getCurrentUser, UserDetails} from './auth-controller';
 import {logger} from '../utils/logger';
 import { browser } from 'webextension-polyfill-ts';
-import { getUrlsToPin, setUrlsToPin } from '../models/pinned-tabs';
-import { updateAllWindows } from './window-controller';
+import { initPinnedTabs } from './options/pinned-tabs';
+import { initPopupWindows } from './options/popup-windows';
 
 function hideAllPages() {
   const pages = document.querySelectorAll('.page');
@@ -24,66 +24,46 @@ function showErrorPage(msg: string) {
   errorMsg.textContent = msg;
 }
 
+async function selectOptionsTab(tab: Element) {
+  const optionsNav = document.querySelector('.js-options-nav');
+  const selectedElements = optionsNav.querySelectorAll('li.is-selected');
+  for (let i = 0; i < selectedElements.length; i++) {
+    deselectOptionsTab(selectedElements.item(i));
+
+  }
+  tab.classList.add('is-selected');
+  const contentId = tab.getAttribute('tab-content');
+  const contentElement = document.querySelector(`#${contentId}`);
+  contentElement.classList.add('is-selected');
+}
+
+function deselectOptionsTab(tab: Element) {
+  tab.classList.remove('is-selected');
+  const contentId = tab.getAttribute('tab-content');
+  const contentElement = document.querySelector(`#${contentId}`);
+  contentElement.classList.remove('is-selected');
+}
+
 async function showOptionsPage(editMode = false) {
-  let urlsToPin = await getUrlsToPin();
-  const pinnedTabsList = document.querySelector('.js-pinned-tabs');
-  while (pinnedTabsList.firstChild) {
-    pinnedTabsList.removeChild(pinnedTabsList.firstChild);
-  }
-
-  // In edit mode we need at least 1 li element to allow editing.
-  if (editMode && urlsToPin.length === 0) {
-    urlsToPin = ['https://......'];
-  }
-
-  for (const url of urlsToPin) {
-    const listItem = document.createElement('li');
-    listItem.textContent = url;
-    pinnedTabsList.appendChild(listItem);
-  }
-
-  const buttonControls = document.querySelector('.js-pinned-tabs-controls');
-  while (buttonControls.firstChild) {
-    buttonControls.removeChild(buttonControls.firstChild);
-  }
-
-  if (editMode) {
-    const saveBtn = document.createElement('button');
-    saveBtn.textContent = 'Save';
-    saveBtn.addEventListener('click', async () => {
-      saveBtn.disabled = true;
-      const newUrls = [];
-      const listItems = pinnedTabsList.querySelectorAll('li');
-      for (const item of listItems) {
-        const urlText = item.textContent;
-        try {
-          const parsedUrl = new URL(urlText);
-          newUrls.push(parsedUrl.toString());
-        } catch (err) {
-          logger.warn('Found an invalid URL: ', urlText);
-        }
-      }
-
-      await setUrlsToPin(newUrls);
-      await updateAllWindows();
-
-      showOptionsPage(false);
-    });
-    buttonControls.appendChild(saveBtn);
-
-    pinnedTabsList.setAttribute('contenteditable', 'true');
-  } else {
-    const editBtn = document.createElement('button');
-    editBtn.textContent = 'Edit URLs';
-    editBtn.addEventListener('click', () => {
-      showOptionsPage(true);
-    });
-    buttonControls.appendChild(editBtn);
-
-    pinnedTabsList.removeAttribute('contenteditable');
-  }
-
   showPage('js-options');
+}
+
+async function initOptionsPage() {
+  const optionsNav = document.querySelector('.js-options-nav');
+  const navElements = optionsNav.querySelectorAll('li');
+
+  // Select first tab
+  selectOptionsTab(navElements.item(0));
+
+  for (let i = 0; i < navElements.length; i++) {
+    const navItem = navElements.item(i);
+    navItem.addEventListener('click', () => {
+      selectOptionsTab(navItem);
+    });
+  }
+
+  await initPinnedTabs();
+  await initPopupWindows();
 }
 
 function showLoadingPage() {
@@ -91,5 +71,7 @@ function showLoadingPage() {
 }
 
 window.addEventListener('load', async () => {
+  showLoadingPage();
+  await initOptionsPage();
   showOptionsPage();
 });

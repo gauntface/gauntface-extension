@@ -2,6 +2,8 @@
 @import "./components/material-icons.css";
 @import "./components/loader.css";
 @import "./components/pinned-tabs-list.css";
+@import "./components/popup-windows.css";
+
 html {
   min-width: 100%;
   min-height: 100%;
@@ -61,6 +63,11 @@ nav ul {
   font-family: 'Arvo';
 }
 
+nav ul li {
+  margin-right: 12px;
+  cursor: pointer;
+}
+
 nav ul li.is-selected {
   border-bottom-width: 4px;
   border-bottom-style: solid;
@@ -90,6 +97,14 @@ nav ul li.is-selected {
   min-height: 100%;
   padding: 24px 0;
   box-sizing: border-box;
+}
+
+.page.options > main > section {
+  display: none;
+}
+
+.page.options > main > section.is-selected {
+  display: block;
 }
 
 .page.options header, .page.options main {

@@ -26,19 +26,29 @@
       <section class="page options js-options is-hidden">
         <header>
           <h1>Options</h1>
-          <nav>
+          <nav class="js-options-nav">
               <ul>
-                <li class="is-selected">Pinned Tabs</li>
+                <li tab-content="pinned-tabs">Pinned Tabs</li>
+                <li tab-content="popup-windows">Pop Up Windows</li>
               </ul>
             </nav>
         </header>
 
         <main>
-          <section>
+          <section id="pinned-tabs">
             <p>Please add the URLs of tabs you would like to have permenantly
-              pinned.</p>
+              pinned in all your Windows.</p>
             <ul class="pinned-tabs js-pinned-tabs"></ul>
             <div class="js-pinned-tabs-controls"></div>
+          </section>
+
+          <section id="popup-windows">
+            <p>Please add the URLs of tabs you would like opened in a
+              pop-up window.</p>
+            <p><strong>Warning:</strong> This feels spammy pretty quickly
+            if you add lots of URLs.</p>
+            <ul class="popup-window-urls js-popup-window-urls"></ul>
+            <div class="js-popup-window-urls-controls"></div>
           </section>
         </main>
       </section>
