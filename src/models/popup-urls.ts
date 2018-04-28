@@ -1,10 +1,12 @@
 import {logger} from '../utils/logger';
 import {browser} from 'webextension-polyfill-ts';
 
+export const POPUP_STORAGE_KEY = 'popup-urls';
+
 export async function getPopupURLs(): Promise<string[]> {
-  const result = await browser.storage.sync.get('popup-urls');
-  if (result['popup-urls']) {
-    return result['popup-urls'];
+  const result = await browser.storage.sync.get(POPUP_STORAGE_KEY);
+  if (result[POPUP_STORAGE_KEY]) {
+    return result[POPUP_STORAGE_KEY];
   }
 
   return [];
@@ -12,6 +14,6 @@ export async function getPopupURLs(): Promise<string[]> {
 
 export async function setPopupURLs(urls: string[]) {
   await browser.storage.sync.set({
-    'popup-urls': urls,
+    [POPUP_STORAGE_KEY]: urls,
   });
 }

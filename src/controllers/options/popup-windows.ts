@@ -1,6 +1,5 @@
 import {getPopupURLs, setPopupURLs} from '../../models/popup-urls';
 import {logger} from '../../utils/logger';
-import { configurePanels } from '../panels';
 
 const DEFAULT_TEXT = 'https://......';
 
@@ -50,7 +49,6 @@ export async function initPopupWindows(editMode = false) {
       }
 
       await setPopupURLs(newUrls);
-      await configurePanels();
 
       initPopupWindows(false);
     });

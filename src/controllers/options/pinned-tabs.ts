@@ -1,6 +1,5 @@
 import {logger} from '../../utils/logger';
 import { getUrlsToPin, setUrlsToPin } from '../../models/pinned-tabs';
-import { updateAllWindows } from '../window-controller';
 
 const DEFAULT_TEXT = 'https://......';
 
@@ -49,7 +48,6 @@ export async function initPinnedTabs(editMode = false) {
       }
 
       await setUrlsToPin(newUrls);
-      await updateAllWindows();
 
       initPinnedTabs(false);
     });

@@ -1,5 +1,7 @@
 const gulp = require('gulp');
 const path = require('path');
+const bumpManifestVersion = require('./gulp-tasks/bump-manifest-version');
+const zip = require('./gulp-tasks/zip');
 
 const getTaskFilepaths = require('./gulp-tasks/utils/get-task-filepaths');
 
@@ -21,16 +23,12 @@ const loadTasks = () => {
 
 loadTasks();
 
-gulp.task('dev', (done) => {
-  return gulp.series([
-    'build',
-  ])(done);
-});
-
-gulp.task('prod', (done) => {
+gulp.task('publish', (done) => {
   process.env.NODE_ENV = 'production';
 
   return gulp.series([
+    bumpManifestVersion,
     'build',
+    zip,
   ])(done);
 });
