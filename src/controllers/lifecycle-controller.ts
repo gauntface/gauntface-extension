@@ -26,7 +26,7 @@ export async function onStorageChange(changes: Storage.OnChangedChangesType, are
         await configurePanels();
         break;
       default:
-        logger.warn(`An untracked storage change occured on '${changeKey}'`, changes[changeKey], areaName);
+        logger.warn(`An untracked storage change occured on '${changeKey}'`, changes, areaName);
     }
   }
 }
