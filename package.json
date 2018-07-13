@@ -61,7 +61,7 @@
   "license": "Apache-2.0",
   "version": "0.0.1",
   "dependencies": {
-    "@hopin/logger": "0.0.3",
+    "@hopin/logger": "0.0.4",
     "webextension-polyfill-ts": "0.8.3"
   }
 }
