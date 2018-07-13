@@ -1,0 +1,32 @@
+<html>
+    <head>
+      <title>New Tab</title>
+      <link rel="stylesheet" type="text/css" href="./styles/popup.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    </head>
+    <body>
+      <!-- Floating Options Page -->
+      <div class="options-container">
+        <button class="icon-btn js-options-btn">
+          <i class="material-icons">
+            settings
+          </i>
+        </button>
+      </div>
+
+      <!-- Loading -->
+      <section class="page loading js-loading is-hidden">
+        <div class="loader">Loading</div>
+      </section>
+
+      <!-- Popup -->
+      <section class="page popup js-popup is-hidden">
+          <header>
+            <h1>Hi.</h1>
+          </header>
+          <p><button class="js-update-pinned-tabs">Update Pinned Tabs</button> <button class="js-update-popup-windows">Update Pop Up Windows</button></p>
+      </section>
+
+      <script src="./controllers/popup-page.js" async></script>
+    </body>
+  </html>

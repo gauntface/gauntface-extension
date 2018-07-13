@@ -1,53 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Arvo|Open+Sans');
-@import "./components/material-icons.css";
-@import "./components/loader.css";
+@import "./_base.css";
 @import "./components/pinned-tabs-list.css";
 @import "./components/popup-windows.css";
-
-html {
-  min-width: 100%;
-  min-height: 100%;
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  width: 100%;
-  min-height: 100%;
-
-  background-color: #ede401;
-  color: #fc4353;
-
-  font-size: 16px;
-  font-family: 'Open Sans', sans-serif;
-}
-
-h1, h2, h3, h4, h5, h6, button, .button, a {
-  font-family: 'Arvo', serif;
-}
-
-header {
-  color: #f9ffff;
-}
-
-header h1 {
-  font-size: 3.6em;
-  margin: 0;
-}
-
-button {
-  background-color: white;
-  color: #ede401;
-  border: none;
-  font-size: 1.2em;
-  font-weight: bold;
-  padding: 12px;
-  cursor: pointer;
-  outline: none;
-}
 
 nav {
   padding: 12px 0;
@@ -84,14 +37,6 @@ nav ul li.is-selected {
   align-items: center;
 }
 
-.page.loading {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .page.options {
   width: 100%;
   min-height: 100%;
@@ -110,8 +55,4 @@ nav ul li.is-selected {
 .page.options header, .page.options main {
   max-width: 800px;
   margin: 0 auto;
-}
-
-.page.is-hidden {
-  display: none;
 }

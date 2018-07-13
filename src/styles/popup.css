@@ -1,0 +1,22 @@
+@import "./_base.css";
+
+body {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 500px;
+  height: 250px;
+}
+
+h1, p {
+  text-align: center;
+}
+
+.options-container {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}

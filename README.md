@@ -1,66 +1,25 @@
-<h1  align="center">hopin-logger</h1>
+<h1  align="center">gauntface-extension</h1>
 
 <p align="center">
-  <a href="https://travis-ci.org/gauntface/hopin-logger"><img src="https://travis-ci.org/gauntface/hopin-logger.svg?branch=master" alt="Travis Build Status" /></a>
-  <a href="https://coveralls.io/github/gauntface/hopin-logger?branch=master"><img src="https://coveralls.io/repos/github/gauntface/hopin-logger/badge.svg?branch=master" alt="Coverage Status" /></a>
-  <a href="https://david-dm.org/gauntface/hopin-logger" title="dependencies status"><img src="https://david-dm.org/gauntface/hopin-logger/status.svg"/></a>
-  <a href="https://david-dm.org/gauntface/hopin-logger?type=dev" title="devDependencies status"><img src="https://david-dm.org/gauntface/hopin-logger/dev-status.svg"/></a>
-  <a href="https://david-dm.org/gauntface/hopin-logger?type=peer" title="peerDependencies status"><img src="https://david-dm.org/gauntface/hopin-logger/peer-status.svg"/></a>
+  <a href="https://travis-ci.org/gauntface/gauntface-extension"><img src="https://travis-ci.org/gauntface/gauntface-extension.svg?branch=master" alt="Travis Build Status" /></a>
+  <a href="https://coveralls.io/github/gauntface/gauntface-extension?branch=master"><img src="https://coveralls.io/repos/github/gauntface/gauntface-extension/badge.svg?branch=master" alt="Coverage Status" /></a>
+  <a href="https://david-dm.org/gauntface/gauntface-extension" title="dependencies status"><img src="https://david-dm.org/gauntface/gauntface-extension/status.svg"/></a>
+  <a href="https://david-dm.org/gauntface/gauntface-extension?type=dev" title="devDependencies status"><img src="https://david-dm.org/gauntface/gauntface-extension/dev-status.svg"/></a>
+  <a href="https://david-dm.org/gauntface/gauntface-extension?type=peer" title="peerDependencies status"><img src="https://david-dm.org/gauntface/gauntface-extension/peer-status.svg"/></a>
 </p>
 
 <p align="center">
-`hopin-logger` is a simply and small library aimed at making it easy to add
-colored and prefixed logs to a project in both Node 8+ and the browser.
+`gauntface-extension` is an extension build by and for gauntface. Feel free to use it, but it's unlikely to be perfect for you (or even make sense for your use).
 </p>
 
 <p align="center">
-<img a;t="Screenshot of hopin-logger demos in Node and Browser" src="https://raw.githubusercontent.com/gauntface/hopin-logger/master/demo/hopin-logger-screenshots.png" />
+<img a;t="Screenshot of gauntface-extension demos in Node and Browser" src="https://raw.githubusercontent.com/gauntface/gauntface-extension/master/demo/gauntface-extension-screenshots.png" />
 </p>
 
 <p align="center">
-<img alt="Jake Rainbow" src="https://media.giphy.com/media/QrV1C9kNmsacg/giphy.gif" />
+<img alt="Ask for extension" src="https://media.giphy.com/media/QgY5lLhjpEtIQ/giphy.gif" />
 </p>
 
-## Usage in Browser
+## Install in Chrome
 
-```html
-<script src="https://unpkg.com/hopin-logger@0.0.1/dist/iife/browser/index.js"></script>
-<script>
-const factory = hopin.logger.factory
-const logger = factory.getLogger('example-project', {
-  prefix: 'Example',
-});
-
-logger.debug('Doing some debugging?');
-logger.info('I hope to provide info');
-logger.log('I\'m a friendly log.');
-logger.warn('Oops, I\'m an warning.');
-logger.error('Eek! I\'m an error.');
-
-logger.group('I can group logs together.');
-logger.log('Message in a group....');
-logger.log('....awesome sauce.');
-logger.groupEnd();
-</script>
-```
-
-## Usage in Node
-
-```javascript
-const {factory} = require('hopin-logger');
-
-const logger = factory.getLogger('example-project', {
-  prefix: 'Example',
-});
-
-logger.debug('Doing some debugging?');
-logger.info('I hope to provide info');
-logger.log('I\'m a friendly log.');
-logger.warn('Oops, I\'m an warning.');
-logger.error('Eek! I\'m an error.');
-
-logger.group('I can group logs together.');
-logger.log('Message in a group....');
-logger.log('....awesome sauce.');
-logger.groupEnd();
-```
+[Available in all Good Chrome Webstores](https://chrome.google.com/webstore/detail/gauntface-extension/aaoghaleokiofdkongaoaohophpopalg)

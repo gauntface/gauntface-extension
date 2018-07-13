@@ -11,7 +11,9 @@ async function bundleBrowserModules() {
 
   const entryPoints = [
     'application.js',
-    'options.js',
+    'options-page.js',
+    'new-tab-page.js',
+    'popup-page.js',
   ];
   await Promise.all(entryPoints.map((filename) => {
     return moduleToBundle(path.join(modulesDir, 'controllers', filename), path.join(browserDir, 'controllers'));

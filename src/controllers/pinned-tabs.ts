@@ -36,6 +36,7 @@ export async function configurePinnedTabs(windowId: number) {
         // Provide URL of the tab
         url,
       });
+      
     }
   }
 } catch (err) {
