@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-<img a;t="Screenshot of gauntface-extension demos in Node and Browser" src="https://raw.githubusercontent.com/gauntface/gauntface-extension/master/demo/gauntface-extension-screenshots.png" />
+<img alt="Screenshot of gauntface-extension demos in Node and Browser" src="https://raw.githubusercontent.com/gauntface/gauntface-extension/master/demo/gauntface-extension-screenshot.png" />
 </p>
 
 <p align="center">
