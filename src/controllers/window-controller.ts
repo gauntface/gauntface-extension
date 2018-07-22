@@ -9,18 +9,28 @@ export async function updateAllWindows() {
     if (window.type !== 'normal') {
       return;
     }
-    await configurePinnedTabs(window.id);
+    const tabs = await browser.tabs.query({
+      windowId: window.id,
+      pinned: true,
+    });
+
+    // If the window has no tabs - it's likely a new window and should be altered.
+    if (tabs.length > 0) {
+      await configurePinnedTabs(window.id);
+    }
   }
 }
 
 export async function onWindowCreated(window: Windows.Window) {
-  logger.debug('New window created');
   if (window.type === 'normal') {
+    logger.debug('New window created');
+    
     const tabs = await browser.tabs.query({
       windowId: window.id,
     });
-    logger.debug('Checking tabs in new window: ', tabs);
+
     if (tabs.length === 0 || tabs[0].url === 'chrome://newtab/') {
+      logger.log(`Configuring tabs in new window: `, window);
       await configurePinnedTabs(window.id);
     }
   }
