@@ -1,6 +1,6 @@
-import { browser } from 'webextension-polyfill-ts';
+import { Tabs, browser } from 'webextension-polyfill-ts';
 import {onInstalled, onExtensionStartup, onStorageChange} from './lifecycle-controller';
-import {onWindowCreated} from './window-controller';
+import {onWindowCreated, onTabCreated, onTabUpdated} from './window-controller';
 
 // This class represents the "Application". It essentially
 // acts as a single place to store shared information.
@@ -18,6 +18,8 @@ export class Application {
     browser.runtime.onInstalled.addListener(onInstalled);
     browser.storage.onChanged.addListener(onStorageChange);
     browser.windows.onCreated.addListener(onWindowCreated);
+    browser.tabs.onCreated.addListener(onTabCreated);
+    browser.tabs.onUpdated.addListener(onTabUpdated);
   }
 }
 

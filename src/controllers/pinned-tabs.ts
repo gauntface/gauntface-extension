@@ -23,6 +23,14 @@ export async function configurePinnedTabs(windowId: number) {
         index: i,
       });
       for (let j = 1; j < matchingTabs.length; j++) {
+        // If the tab we arre about to remove is currently opened,
+        // re-focus the tab to the pinned one.
+        if (matchingTabs[j].active) {
+          await browser.tabs.update(tabToRepurpose.id, {
+            active: true,
+          });
+        }
+
         await browser.tabs.remove(matchingTabs[j].id);
       }
     } else {
