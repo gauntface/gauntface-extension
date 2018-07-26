@@ -27,7 +27,14 @@ async function initPopupPage() {
   const popupWindowBtn = document.querySelector('.js-update-popup-windows');
   pinnedTabsBtn.addEventListener('click', async () => {
     const window = await browser.windows.getCurrent();
-    await configurePinnedTabs(window.id);
+    await browser.runtime.sendMessage(
+      {
+        type: 'update-pinned-tabs',
+        data: {
+          windowID: window.id,
+        },
+      },
+    );
   });
   popupWindowBtn.addEventListener('click', async () => {
     await configurePanels();

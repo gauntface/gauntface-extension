@@ -1,18 +1,21 @@
 import { browser } from 'webextension-polyfill-ts';
 import {logger} from '../utils/logger';
-import {getUrlsToPin} from '../models/pinned-tabs';
+import {getUrlsToPin, getPinnedState, setPinnedState} from '../models/pinned-tabs';
 
-let promiseChain = Promise.resolve();
-
-type WindowToPinnedTabMap = {
+export type WindowToPinnedTabMap = {
   [windowID: number]: {
     [url: string]: number
   }
 }
 
-const pinnedTabs: WindowToPinnedTabMap = {};
+let pinnedTabs: WindowToPinnedTabMap = {};
 
-export function getConfiguredWindows(): number[] {
+let promiseChain = getPinnedState().then((prevState) => {
+  pinnedTabs = prevState;
+});
+
+export async function getConfiguredWindows(): Promise<number[]> {
+  await promiseChain;
   const windowIDs: number[] = [];
   Object.keys(pinnedTabs).map((key) => {
     try {
@@ -24,14 +27,16 @@ export function getConfiguredWindows(): number[] {
   return windowIDs;
 }
 
-export function configurePinnedTabs(windowId: number): Promise<void> {
+export function configurePinnedTabs(windowID: number): Promise<void> {
+  logger.log(`Configuring tabs in window ${windowID}, currrent config: `, pinnedTabs[windowID]);
   // Forrce a promise chain so steps don't interfere with multiple events
   // and calls causing updates.
   promiseChain = promiseChain.then(async () => {
-    try {
-      const currentlyManagedTabs = pinnedTabs[windowId] || {};
+    const urlsToPin = await getUrlsToPin();
+    const currentlyManagedTabs = pinnedTabs[windowID] || {};
 
-      const urlsToPin = await getUrlsToPin();
+    // Instantiate and update any current tabs.
+    try {
       for (let i = 0; i < urlsToPin.length; i++) {
         const url = urlsToPin[i];
 
@@ -51,7 +56,7 @@ export function configurePinnedTabs(windowId: number): Promise<void> {
             index: i,
           });
         } else {
-          await browser.tabs.create({
+          currentTab = await browser.tabs.create({
             // Don't force focus on it.
             active: false,
             // Position in a specific order
@@ -62,48 +67,25 @@ export function configurePinnedTabs(windowId: number): Promise<void> {
             url,
           });
         }
-        /* const matchingTabs = await browser.tabs.query({
-          windowId,
-          url: `${url}*`,
-          pinned: true,
-        });
-    
-        if (matchingTabs.length > 0) {
-          logger.log(`For URL: ${url}, got matches: `, matchingTabs);
-          const tabToRepurpose = matchingTabs[0];
-          await browser.tabs.move(tabToRepurpose.id, {
-            // Position in a specific order
-            index: i,
-          });
-          for (let j = 1; j < matchingTabs.length; j++) {
-            // If the tab we arre about to remove is currently opened,
-            // re-focus the tab to the pinned one.
-            if (matchingTabs[j].active) {
-              await browser.tabs.update(tabToRepurpose.id, {
-                active: true,
-              });
-            }
-
-            await browser.tabs.remove(matchingTabs[j].id);
-          }
-        } else {
-          logger.log(`Creating new tab for URL: ${url}`);
-          await browser.tabs.create({
-            // Don't force focus on it.
-            active: false,
-            // Position in a specific order
-            index: i,
-            // Ensure it's pinned
-            pinned: true,
-            // Provide URL of the tab
-            url,
-          });
-          
-        }*/
+        currentlyManagedTabs[url] = currentTab.id
       }
     } catch (err) {
       logger.error(err);
     }
+
+    // Delete any open tabs we are controlling.
+    try {
+      for (const tabUrl of Object.keys(currentlyManagedTabs)) {
+        if (urlsToPin.indexOf(tabUrl) === -1) {
+          logger.debug(`Removing old tab with URL ${tabUrl}`);
+          await browser.tabs.remove(currentlyManagedTabs[tabUrl]);
+        }
+      }
+    } catch (err) {
+      logger.error(err);
+    }
+    pinnedTabs[windowID] = currentlyManagedTabs;
+    await setPinnedState(pinnedTabs);
   });
   return promiseChain;
 }

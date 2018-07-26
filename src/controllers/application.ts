@@ -1,11 +1,12 @@
 import { Tabs, browser } from 'webextension-polyfill-ts';
 import {onInstalled, onExtensionStartup, onStorageChange} from './lifecycle-controller';
 import {onWindowCreated} from './window-controller';
+import { configurePinnedTabs } from './pinned-tabs';
+import {logger} from '../utils/logger';
 
 // This class represents the "Application". It essentially
 // acts as a single place to store shared information.
 export class Application {
-
   constructor() {
     this.setupEventListeners();
 
@@ -18,6 +19,22 @@ export class Application {
     browser.runtime.onInstalled.addListener(onInstalled);
     browser.storage.onChanged.addListener(onStorageChange);
     browser.windows.onCreated.addListener(onWindowCreated);
+    browser.runtime.onMessage.addListener((message) => this.onMessage(message));
+  }
+
+  private async onMessage(message: any) {
+    switch (message.type) {
+      case 'update-pinned-tabs':
+        if (message.data && message.data.windowID) {
+          await configurePinnedTabs(message.data.windowID);
+        } else {
+          logger.warn(`Received 'update-pinned-tabs' message with no windowID format:`, message)
+        }
+        break;
+      default:
+        logger.warn(`Unknown message type: ${message.type}`, message);
+        
+    }
   }
 }
 

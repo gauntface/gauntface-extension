@@ -3,8 +3,8 @@ import {logger} from '../utils/logger';
 import { configurePinnedTabs, getConfiguredWindows } from "./pinned-tabs";
 
 export async function updateAllWindows() {
-  logger.debug('Updating all windows');
-  const configuredWindowIDs = getConfiguredWindows();
+  const configuredWindowIDs = await getConfiguredWindows();
+  logger.debug('Updating all windows', configuredWindowIDs);
   for (const windowID of configuredWindowIDs) {
     try {
       const window = await browser.windows.get(windowID);
