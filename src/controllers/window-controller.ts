@@ -37,7 +37,7 @@ export async function onWindowCreated(window: Windows.Window) {
 }
 
 export async function onTabCreated(tab: Tabs.Tab) {
-  await configurePinnedTabs(tab.windowId);
+  // await configurePinnedTabs(tab.windowId);
 }
 
 export async function onTabUpdated(tabId: number, changeInfo: Tabs.OnUpdatedChangeInfoType, tab: Tabs.Tab) {
