@@ -2,7 +2,7 @@ import { browser, Runtime, Storage } from 'webextension-polyfill-ts';
 import {updateAllWindows} from './window-controller';
 import {logger} from '../utils/logger';
 import { configurePanels } from './panels';
-import {PINNED_STORAGE_KEY} from '../models/pinned-tabs';
+import {PINNED_STORAGE_KEY, PINNED_STATE_STORAGE_KEY} from '../models/pinned-tabs';
 import {POPUP_STORAGE_KEY} from '../models/popup-urls';
 
 export async function onExtensionStartup() {
@@ -24,6 +24,9 @@ export async function onStorageChange(changes: Storage.OnChangedChangesType, are
         break;
       case POPUP_STORAGE_KEY:
         await configurePanels();
+        break;
+      case PINNED_STATE_STORAGE_KEY:
+        // NOOP
         break;
       default:
         logger.warn(`An untracked storage change occured on '${changeKey}'`, changes, areaName);
