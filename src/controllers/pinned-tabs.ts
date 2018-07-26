@@ -4,16 +4,65 @@ import {getUrlsToPin} from '../models/pinned-tabs';
 
 let promiseChain = Promise.resolve();
 
+type WindowToPinnedTabMap = {
+  [windowID: number]: {
+    [url: string]: number
+  }
+}
+
+const pinnedTabs: WindowToPinnedTabMap = {};
+
+export function getConfiguredWindows(): number[] {
+  const windowIDs: number[] = [];
+  Object.keys(pinnedTabs).map((key) => {
+    try {
+      windowIDs.push(parseInt(key, 10));
+    } catch (err) {
+      // NOOP
+    }
+  });
+  return windowIDs;
+}
+
 export function configurePinnedTabs(windowId: number): Promise<void> {
   // Forrce a promise chain so steps don't interfere with multiple events
   // and calls causing updates.
   promiseChain = promiseChain.then(async () => {
     try {
+      const currentlyManagedTabs = pinnedTabs[windowId] || {};
+
       const urlsToPin = await getUrlsToPin();
-    
       for (let i = 0; i < urlsToPin.length; i++) {
         const url = urlsToPin[i];
-        const matchingTabs = await browser.tabs.query({
+
+        const currentTabID = currentlyManagedTabs[url];
+        let currentTab = null;
+        if (currentTabID) {
+          try {
+            currentTab = await browser.tabs.get(currentTabID);
+          } catch (err) {
+            // NOOP
+          }
+        }
+
+        if (currentTab) {
+          await browser.tabs.move(currentTab.id, {
+            // Position in a specific order
+            index: i,
+          });
+        } else {
+          await browser.tabs.create({
+            // Don't force focus on it.
+            active: false,
+            // Position in a specific order
+            index: i,
+            // Ensure it's pinned
+            pinned: true,
+            // Provide URL of the tab
+            url,
+          });
+        }
+        /* const matchingTabs = await browser.tabs.query({
           windowId,
           url: `${url}*`,
           pinned: true,
@@ -50,7 +99,7 @@ export function configurePinnedTabs(windowId: number): Promise<void> {
             url,
           });
           
-        }
+        }*/
       }
     } catch (err) {
       logger.error(err);

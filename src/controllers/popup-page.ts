@@ -2,6 +2,7 @@ import { browser } from 'webextension-polyfill-ts';
 import { configurePanels } from './panels';
 import {updateAllWindows} from './window-controller';
 import {logger} from '../utils/logger';
+import {configurePinnedTabs} from './pinned-tabs';
 
 function hideAllPages() {
   const pages = document.querySelectorAll('.page');
@@ -25,7 +26,8 @@ async function initPopupPage() {
   const pinnedTabsBtn = document.querySelector('.js-update-pinned-tabs');
   const popupWindowBtn = document.querySelector('.js-update-popup-windows');
   pinnedTabsBtn.addEventListener('click', async () => {
-    await updateAllWindows();
+    const window = await browser.windows.getCurrent();
+    await configurePinnedTabs(window.id);
   });
   popupWindowBtn.addEventListener('click', async () => {
     await configurePanels();
