@@ -1,3 +1,4 @@
+import './_sentry';
 import { browser } from 'webextension-polyfill-ts';
 
 import {redirectIfNeeded} from './new-tab/_redirect-if-needed';

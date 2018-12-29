@@ -1,3 +1,4 @@
+import './_sentry';
 import {logger} from '../utils/_logger';
 import { browser } from 'webextension-polyfill-ts';
 import { initPinnedTabs } from './options/_pinned-tabs';

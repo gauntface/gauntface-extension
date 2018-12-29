@@ -1,3 +1,4 @@
+import './_sentry';
 import { browser } from 'webextension-polyfill-ts';
 import { configurePanels } from './_panels';
 import {updateAllWindows} from './_window-controller';

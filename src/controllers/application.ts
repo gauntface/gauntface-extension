@@ -1,3 +1,4 @@
+import './_sentry';
 import { Tabs, browser } from 'webextension-polyfill-ts';
 import {onInstalled, onExtensionStartup, onStorageChange} from './_lifecycle-controller';
 import {onWindowCreated} from './_window-controller';
