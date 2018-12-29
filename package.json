@@ -4,55 +4,22 @@
     "access": "public"
   },
   "scripts": {
-    "ava": "nyc ava ./build/test/{node,integration}/**/*.js",
     "build": "gulp build",
-    "docs": "typedoc ./src/**/*.ts --out ./docs/ --mode file --excludePrivate --excludeProtected --module umd --ignoreCompilerErrors",
     "lint": "tslint 'src/**/*'",
-    "publish": "gulp publish",
-    "report-coverage": "nyc report --reporter=text-lcov | coveralls",
-    "test": "npm run build && npm run ava && npm run lint",
-    "typescript:modules": "tsc -p ./tsconfigs/modules.json --declaration",
-    "typescript:test": "tsc -p ./tsconfigs/test.json",
-    "version": "echo 'TODO: ./build-docs && git add docs'"
-  },
-  "nyc": {
-    "reporter": [
-      "text",
-      "html"
-    ],
-    "exclude": [
-      "build/test/**/*"
-    ]
+    "test": "npm run build && npm run lint"
   },
   "devDependencies": {
-    "@types/express": "4.16.0",
+    "@hopin/wbt-ts-browser": "0.0.17",
     "@types/fs-extra": "5.0.4",
     "@types/sinon": "7.0.2",
     "archiver": "3.0.0",
-    "ava": "1.0.1",
-    "coveralls": "3.0.2",
-    "express": "4.16.4",
     "fs-extra": "7.0.1",
     "glob": "7.1.3",
     "gulp": "4.0.0",
     "gulp-imagemin": "5.0.3",
     "gulp-rename": "1.4.0",
-    "gulp-sourcemaps": "2.6.4",
-    "gulp-typescript": "5.0.0",
-    "nyc": "13.1.0",
-    "rollup": "1.0.0",
-    "rollup-plugin-commonjs": "9.2.0",
-    "rollup-plugin-node-resolve": "4.0.0",
-    "rollup-plugin-sourcemaps": "0.4.2",
-    "rollup-plugin-terser": "3.0.0",
-    "rollup-stream": "1.24.1",
     "semver": "5.6.0",
-    "sinon": "7.2.2",
-    "tslint": "5.12.0",
-    "typedoc": "0.13.0",
-    "typescript": "2.8.3",
-    "vinyl-buffer": "1.0.1",
-    "vinyl-source-stream": "2.0.0"
+    "tslint": "5.12.0"
   },
   "files": [
     "dist/**/*"

@@ -1,6 +1,6 @@
 import { Windows, Tabs, browser } from "webextension-polyfill-ts";
-import {logger} from '../utils/logger';
-import { configurePinnedTabs, getConfiguredWindows } from "./pinned-tabs";
+import {logger} from '../utils/_logger';
+import { configurePinnedTabs, getConfiguredWindows } from "./_pinned-tabs";
 
 export async function updateAllWindows() {
   const configuredWindowIDs = await getConfiguredWindows();

@@ -1,7 +1,7 @@
-import {logger} from '../utils/logger';
+import {logger} from '../utils/_logger';
 import { browser } from 'webextension-polyfill-ts';
-import { initPinnedTabs } from './options/pinned-tabs';
-import { initPopupWindows } from './options/popup-windows';
+import { initPinnedTabs } from './options/_pinned-tabs';
+import { initPopupWindows } from './options/_popup-windows';
 
 function hideAllPages() {
   const pages = document.querySelectorAll('.page');

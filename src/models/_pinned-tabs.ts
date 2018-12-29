@@ -1,6 +1,6 @@
-import {logger} from '../utils/logger';
+import {logger} from '../utils/_logger';
 import {browser} from 'webextension-polyfill-ts';
-import {WindowToPinnedTabMap} from '../controllers/pinned-tabs';
+import {WindowToPinnedTabMap} from '../controllers/_pinned-tabs';
 
 export const PINNED_STORAGE_KEY = 'pinned-tabs';
 export const PINNED_STATE_STORAGE_KEY = 'pinned-tabs-state';

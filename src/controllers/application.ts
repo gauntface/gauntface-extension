@@ -1,8 +1,8 @@
 import { Tabs, browser } from 'webextension-polyfill-ts';
-import {onInstalled, onExtensionStartup, onStorageChange} from './lifecycle-controller';
-import {onWindowCreated} from './window-controller';
-import { configurePinnedTabs } from './pinned-tabs';
-import {logger} from '../utils/logger';
+import {onInstalled, onExtensionStartup, onStorageChange} from './_lifecycle-controller';
+import {onWindowCreated} from './_window-controller';
+import { configurePinnedTabs } from './_pinned-tabs';
+import {logger} from '../utils/_logger';
 
 // This class represents the "Application". It essentially
 // acts as a single place to store shared information.

@@ -1,5 +1,5 @@
-import {getPopupURLs, setPopupURLs} from '../../models/popup-urls';
-import {logger} from '../../utils/logger';
+import {getPopupURLs, setPopupURLs} from '../../models/_popup-urls';
+import {logger} from '../../utils/_logger';
 
 const DEFAULT_TEXT = 'https://......';
 

@@ -1,27 +1,8 @@
-const gulp = require('gulp');
+/* const gulp = require('gulp');
 const path = require('path');
+
 const bumpManifestVersion = require('./gulp-tasks/bump-manifest-version');
 const zip = require('./gulp-tasks/zip');
-
-const getTaskFilepaths = require('./gulp-tasks/utils/get-task-filepaths');
-
-global.__buildConfig = {
-  src: path.join(__dirname, 'src'),
-  dest: path.join(__dirname, 'dist'),
-  temp: path.join(__dirname, 'build'),
-};
-
-const loadTasks = () => {
-  const taskFiles = getTaskFilepaths();
-  for (const taskFilepath of taskFiles) {
-    const {task} = require(taskFilepath);
-    if (task) {
-      gulp.task(task);
-    }
-  }
-};
-
-loadTasks();
 
 gulp.task('publish', (done) => {
   process.env.NODE_ENV = 'production';
@@ -32,3 +13,26 @@ gulp.task('publish', (done) => {
     zip,
   ])(done);
 });
+*/
+
+const fs = require('fs-extra');
+const path = require('path');
+const gulp = require('gulp');
+const {setConfig} = require('@hopin/wbt-config');
+const tsBrowser = require('@hopin/wbt-ts-browser'); 
+
+const src = path.join(__dirname, 'src');
+const dst = path.join(__dirname, 'build');
+
+setConfig(src, dst);
+
+gulp.task('clean', function() {
+  return fs.remove(dst);
+})
+
+gulp.task('build',
+  gulp.series(
+    'clean',
+    tsBrowser.gulpBuild('gauntface.extension')
+  )
+);
