@@ -1,12 +1,7 @@
 {
   "private": true,
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "build": "gulp build",
-    "lint": "tslint 'src/**/*'",
-    "test": "npm run build && npm run lint"
   },
   "devDependencies": {
     "@hopin/wbt-ts-browser": "0.0.17",
@@ -23,15 +18,12 @@
     "semver": "5.6.0",
     "tslint": "5.12.0"
   },
-  "files": [
-    "dist/**/*"
-  ],
-  "author": "gauntface",
-  "license": "Apache-2.0",
-  "version": "0.0.1",
   "dependencies": {
     "@hopin/logger": "0.0.4",
     "@sentry/browser": "^4.4.2",
     "webextension-polyfill-ts": "0.8.3"
-  }
+  },
+  "author": "gauntface",
+  "license": "Apache-2.0",
+  "version": "0.0.1"
 }
