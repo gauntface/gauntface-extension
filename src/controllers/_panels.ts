@@ -1,4 +1,4 @@
-import {getPopupURLs} from '../models/popup-urls';
+import {getPopupURLs} from '../models/_popup-urls';
 import { browser } from "webextension-polyfill-ts";
 
 export async function configurePanels() {

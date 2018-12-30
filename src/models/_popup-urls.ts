@@ -1,4 +1,4 @@
-import {logger} from '../utils/logger';
+import {logger} from '../utils/_logger';
 import {browser} from 'webextension-polyfill-ts';
 
 export const POPUP_STORAGE_KEY = 'popup-urls';

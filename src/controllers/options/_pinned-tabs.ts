@@ -1,5 +1,5 @@
-import {logger} from '../../utils/logger';
-import { getUrlsToPin, setUrlsToPin } from '../../models/pinned-tabs';
+import {logger} from '../../utils/_logger';
+import { getUrlsToPin, setUrlsToPin } from '../../models/_pinned-tabs';
 
 const DEFAULT_TEXT = 'https://......';
 

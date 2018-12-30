@@ -1,9 +1,9 @@
 import { browser, Runtime, Storage } from 'webextension-polyfill-ts';
-import {updateAllWindows} from './window-controller';
-import {logger} from '../utils/logger';
-import { configurePanels } from './panels';
-import {PINNED_STORAGE_KEY, PINNED_STATE_STORAGE_KEY} from '../models/pinned-tabs';
-import {POPUP_STORAGE_KEY} from '../models/popup-urls';
+import {updateAllWindows} from './_window-controller';
+import {logger} from '../utils/_logger';
+import { configurePanels } from './_panels';
+import {PINNED_STORAGE_KEY, PINNED_STATE_STORAGE_KEY} from '../models/_pinned-tabs';
+import {POPUP_STORAGE_KEY} from '../models/_popup-urls';
 
 export async function onExtensionStartup() {
   await updateAllWindows();

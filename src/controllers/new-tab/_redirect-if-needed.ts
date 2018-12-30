@@ -1,6 +1,6 @@
 import { browser } from 'webextension-polyfill-ts';
 
-import { getUseCustomTabPage } from '../../models/custom-new-tab-page';
+import { getUseCustomTabPage } from '../../models/_custom-new-tab-page';
 
 export async function redirectIfNeeded() {
   const useCustomTab = await getUseCustomTabPage()

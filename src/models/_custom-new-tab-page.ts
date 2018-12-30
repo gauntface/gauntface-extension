@@ -1,4 +1,4 @@
-import {logger} from '../utils/logger';
+import {logger} from '../utils/_logger';
 import {browser} from 'webextension-polyfill-ts';
 
 export const CUSTOM_NEW_TAB_KEY = 'use-custom-new-tab-page';

@@ -1,6 +1,7 @@
+import './_sentry';
 import { browser } from 'webextension-polyfill-ts';
 
-import {redirectIfNeeded} from './new-tab/redirect-if-needed';
+import {redirectIfNeeded} from './new-tab/_redirect-if-needed';
 
 function hideAllPages() {
   const pages = document.querySelectorAll('.page');

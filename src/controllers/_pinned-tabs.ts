@@ -1,6 +1,6 @@
 import { browser } from 'webextension-polyfill-ts';
-import {logger} from '../utils/logger';
-import {getUrlsToPin, getPinnedState, setPinnedState} from '../models/pinned-tabs';
+import {logger} from '../utils/_logger';
+import {getUrlsToPin, getPinnedState, setPinnedState} from '../models/_pinned-tabs';
 
 export type WindowToPinnedTabMap = {
   [windowID: number]: {

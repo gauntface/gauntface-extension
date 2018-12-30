@@ -1,8 +1,8 @@
+import './_sentry';
 import { browser } from 'webextension-polyfill-ts';
-import { configurePanels } from './panels';
-import {updateAllWindows} from './window-controller';
-import {logger} from '../utils/logger';
-import {configurePinnedTabs} from './pinned-tabs';
+import { configurePanels } from './_panels';
+import {updateAllWindows} from './_window-controller';
+import {configurePinnedTabs} from './_pinned-tabs';
 
 function hideAllPages() {
   const pages = document.querySelectorAll('.page');
