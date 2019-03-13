@@ -6,7 +6,7 @@
   "devDependencies": {
     "@hopin/wbt-ts-browser": "0.0.17",
     "@types/fs-extra": "5.0.5",
-    "@types/sinon": "7.0.9",
+    "@types/sinon": "7.0.10",
     "archiver": "3.0.0",
     "fs-extra": "7.0.1",
     "glob": "7.1.3",
