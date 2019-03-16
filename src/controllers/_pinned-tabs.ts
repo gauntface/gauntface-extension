@@ -16,6 +16,7 @@ let promiseChain = getPinnedState().then((prevState) => {
 
 export async function getConfiguredWindows(): Promise<number[]> {
   await promiseChain;
+
   const windowIDs: number[] = [];
   Object.keys(pinnedTabs).map((key) => {
     try {
@@ -51,11 +52,13 @@ export function configurePinnedTabs(windowID: number): Promise<void> {
         }
 
         if (currentTab) {
+          console.debug(`Moving tab ${currentTab.id} for ${url}`);
           await browser.tabs.move(currentTab.id, {
             // Position in a specific order
             index: i,
           });
         } else {
+          console.debug(`Creating tab for ${url}`);
           currentTab = await browser.tabs.create({
             // Don't force focus on it.
             active: false,
@@ -66,6 +69,15 @@ export function configurePinnedTabs(windowID: number): Promise<void> {
             // Provide URL of the tab
             url,
           });
+          /**await new Promise((resolve) => {
+            const listener = (tabId: number, info: any) => {
+              if (info.status === 'complete') {
+                browser.tabs.onUpdated.removeListener(listener);
+                resolve();
+              }
+            };
+            browser.tabs.onUpdated.addListener(listener);
+          });*/
         }
         currentlyManagedTabs[url] = currentTab.id
       }
@@ -85,6 +97,7 @@ export function configurePinnedTabs(windowID: number): Promise<void> {
       logger.error(err);
     }
     pinnedTabs[windowID] = currentlyManagedTabs;
+    logger.log(`Configuring tabs in window ${windowID}, new config: `, pinnedTabs[windowID]);
     await setPinnedState(pinnedTabs);
   });
   return promiseChain;
