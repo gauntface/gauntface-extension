@@ -2,7 +2,7 @@ import { browser, Runtime, Storage } from 'webextension-polyfill-ts';
 import {updateAllWindows} from './_window-controller';
 import {logger} from '../utils/_logger';
 import { configurePanels } from './_panels';
-import {PINNED_STORAGE_KEY, PINNED_STATE_STORAGE_KEY} from '../models/_pinned-tabs';
+import {URLS_TO_PIN_STORAGE_KEY, PINNED_TABS_STORAGE_KEY} from '../models/_pinned-tabs';
 import {POPUP_STORAGE_KEY} from '../models/_popup-urls';
 
 async function logTabs() {
@@ -15,12 +15,12 @@ async function logTabs() {
 }
 
 export async function onExtensionStartup() {
-  const waitS = 30;
-  logger.log(`onExtensionStartup() Waiting ${waitS} seconds....`);
+  // const waitS = 30;
+  // logger.log(`onExtensionStartup() Waiting ${waitS} seconds....`);
   logger.log(`Tabs at boot.....`);
   await logTabs();
 
-  setTimeout(async () => {
+  // setTimeout(async () => {
     logger.log(`onExtensionStartup() Running.....`);
 
     logger.log(`Tabs before hand.....`);
@@ -31,7 +31,7 @@ export async function onExtensionStartup() {
 
     logger.log(`Tabs after hand.....`);
     await logTabs();
-  }, waitS * 1000);
+  // }, waitS * 1000);
 }
 
 export async function onInstalled(details: Runtime.OnInstalledDetailsType) {
@@ -45,13 +45,13 @@ export async function onStorageChange(changes: Storage.OnChangedChangesType, are
   for (const changeKey of Object.keys(changes)) {
     logger.log(`onStorageChange() changeKey: ${changeKey}`);
     switch (changeKey) {
-      case PINNED_STORAGE_KEY:
+      case URLS_TO_PIN_STORAGE_KEY:
         await updateAllWindows();
         break;
       case POPUP_STORAGE_KEY:
         await configurePanels();
         break;
-      case PINNED_STATE_STORAGE_KEY:
+      case PINNED_TABS_STORAGE_KEY:
         // NOOP
         break;
       default:
