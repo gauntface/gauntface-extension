@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@hopin/logger": "0.0.4",
-    "@sentry/browser": "4.6.4",
+    "@sentry/browser": "4.6.5",
     "webextension-polyfill-ts": "0.8.3"
   },
   "author": "gauntface",
