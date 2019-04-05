@@ -14,7 +14,7 @@
     "gulp-imagemin": "5.0.3",
     "gulp-rename": "1.4.0",
     "rollup-plugin-commonjs": "9.3.4",
-    "rollup-plugin-node-resolve": "4.0.1",
+    "rollup-plugin-node-resolve": "4.1.0",
     "semver": "6.0.0",
     "tslint": "5.15.0"
   },
