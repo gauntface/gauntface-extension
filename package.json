@@ -15,7 +15,7 @@
     "gulp-rename": "1.4.0",
     "rollup-plugin-commonjs": "10.0.0",
     "rollup-plugin-node-resolve": "5.0.0",
-    "semver": "6.1.0",
+    "semver": "6.1.1",
     "tslint": "5.16.0"
   },
   "dependencies": {
