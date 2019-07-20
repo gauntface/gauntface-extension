@@ -7,7 +7,7 @@
     "@hopin/wbt-ts-browser": "0.0.20",
     "@types/fs-extra": "8.0.0",
     "@types/sinon": "7.0.13",
-    "archiver": "3.0.1",
+    "archiver": "3.0.3",
     "fs-extra": "8.1.0",
     "glob": "7.1.4",
     "gulp": "4.0.2",
