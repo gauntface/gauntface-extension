@@ -16,7 +16,7 @@
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-node-resolve": "5.2.0",
     "semver": "6.3.0",
-    "tslint": "5.20.0"
+    "tslint": "5.20.1"
   },
   "dependencies": {
     "@hopin/logger": "0.0.4",
