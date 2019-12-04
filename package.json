@@ -12,7 +12,7 @@
     "glob": "7.1.6",
     "gulp": "4.0.2",
     "gulp-imagemin": "6.2.0",
-    "gulp-rename": "1.4.0",
+    "gulp-rename": "2.0.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-node-resolve": "5.2.0",
     "semver": "6.3.0",
