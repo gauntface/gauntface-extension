@@ -4,7 +4,7 @@
     "build": "gulp build"
   },
   "devDependencies": {
-    "@hopin/wbt-ts-browser": "0.0.64",
+    "@hopin/wbt-ts-browser": "0.0.65",
     "@types/fs-extra": "8.1.0",
     "@types/sinon": "7.5.2",
     "archiver": "3.1.1",
