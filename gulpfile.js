@@ -1,20 +1,3 @@
-/* const gulp = require('gulp');
-const path = require('path');
-
-const bumpManifestVersion = require('./gulp-tasks/bump-manifest-version');
-const zip = require('./gulp-tasks/zip');
-
-gulp.task('publish', (done) => {
-  process.env.NODE_ENV = 'production';
-
-  return gulp.series([
-    bumpManifestVersion,
-    'build',
-    zip,
-  ])(done);
-});
-*/
-
 const fs = require('fs-extra');
 const path = require('path');
 const gulp = require('gulp');
@@ -25,6 +8,9 @@ const tsBrowser = require('@hopin/wbt-ts-browser');
 const imagemin = require('gulp-imagemin');
 const semver = require('semver');
 const archiver = require('archiver');
+
+const prodExtensionKey = 'eddlalejjnkkalohmonpfgdhimepifhl';
+const devExtensionkey = 'developmentkalohmonpfgdhimepifhl';
 
 const src = path.join(__dirname, 'src');
 const dst = path.join(__dirname, 'build');
@@ -92,6 +78,25 @@ gulp.task('bumpManifestVersion', async function() {
   await fs.writeFile(manifestPath, JSON.stringify(manifestContents, null, 2));
 })
 
+gulp.task('dev-manifest', async function() {
+  const manifestPath = path.join(dst, 'manifest.json');
+  const manifestContents = await fs.readJSON(manifestPath);
+  manifestContents.key = devExtensionkey;
+  manifestContents.name = `Dev: ${manifestContents.name}`;
+  for (const k of Object.keys(manifestContents.icons)) {
+    const parts = manifestContents.icons[k].split('.')
+    manifestContents.icons[k] = `${parts[0]}-dev.${parts[1]}`
+  }
+  await fs.writeFile(manifestPath, JSON.stringify(manifestContents, null, 2));
+})
+
+gulp.task('prod-manifest', async function() {
+  const manifestPath = path.join(dst, 'manifest.json');
+  const manifestContents = await fs.readJSON(manifestPath);
+  manifestContents.key = prodExtensionKey;
+  await fs.writeFile(manifestPath, JSON.stringify(manifestContents, null, 2));
+})
+
 gulp.task('images', function() {
   const extensions = [
     'jpeg',
@@ -136,6 +141,7 @@ gulp.task('build',
       'copy',
       'images',
     ),
+    'dev-manifest',
   )
 );
 
@@ -145,6 +151,7 @@ gulp.task('publish', function(done) {
   return gulp.series([
     'bumpManifestVersion',
     'build',
+    'prod-manifest',
     'zip',
   ])(done);
 });
