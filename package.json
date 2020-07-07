@@ -19,7 +19,7 @@
     "tslint": "6.1.2"
   },
   "dependencies": {
-    "@hopin/logger": "0.0.4",
+    "@hopin/logger": "2.0.56",
     "@sentry/browser": "5.19.1",
     "webextension-polyfill-ts": "0.8.3"
   },
