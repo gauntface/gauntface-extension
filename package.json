@@ -5,10 +5,10 @@
   },
   "devDependencies": {
     "@hopin/wbt-ts-browser": "0.0.126",
-    "@types/fs-extra": "8.1.0",
+    "@types/fs-extra": "9.0.1",
     "@types/sinon": "9.0.4",
     "archiver": "4.0.2",
-    "fs-extra": "9.0.0",
+    "fs-extra": "9.0.1",
     "glob": "7.1.6",
     "gulp": "4.0.2",
     "gulp-imagemin": "7.1.0",
