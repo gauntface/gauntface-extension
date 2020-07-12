@@ -1,7 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "build": "gulp build"
+    "build": "gulp build",
+    "build-publish": "gulp publish"
   },
   "devDependencies": {
     "@hopin/wbt-ts-browser": "0.0.126",
