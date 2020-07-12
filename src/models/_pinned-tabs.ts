@@ -1,19 +1,19 @@
-import {logger} from '../utils/_logger';
-import {browser} from 'webextension-polyfill-ts';
+import { logger } from "../utils/_logger";
+import { browser } from "webextension-polyfill-ts";
 
-export const URLS_TO_PIN_STORAGE_KEY = 'pinned-tabs';
-export const PINNED_TABS_STORAGE_KEY = 'pinned-tabs-state';
+export const URLS_TO_PIN_STORAGE_KEY = "pinned-tabs";
+export const PINNED_TABS_STORAGE_KEY = "pinned-tabs-state";
 
 export type WindowToPinnedTabMap = {
   [windowID: number]: {
-    [url: string]: PinnedTabInfo
-  }
-}
+    [url: string]: PinnedTabInfo;
+  };
+};
 
 export type PinnedTabInfo = {
-  finalURL: string
-  latestTabID: number
-}
+  finalURL: string;
+  latestTabID: number;
+};
 
 export async function getUrlsToPin(): Promise<string[]> {
   const result = await browser.storage.sync.get(URLS_TO_PIN_STORAGE_KEY);

@@ -1,58 +1,67 @@
 <html>
-    <head>
-      <title>Gauntface Extension / Options</title>
-      <link rel="stylesheet" type="text/css" href="./styles/options.css">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    </head>
-    <body>
-      <!-- Loading -->
-      <section class="page loading js-loading is-hidden">
-        <div class="loader">Loading</div>
-      </section>
+  <head>
+    <title>Gauntface Extension / Options</title>
+    <link rel="stylesheet" type="text/css" href="./styles/options.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+  </head>
+  <body>
+    <!-- Loading -->
+    <section class="page loading js-loading is-hidden">
+      <div class="loader">Loading</div>
+    </section>
 
-      <!-- Error -->
-      <section class="page error js-error is-hidden">
-        <div>
-          <header>
-            <h1>Oops...</h1>
-          </header>
-          <main>
-          <h2 class="js-error__msg"></h2>
-          </main>
-        </div>
-      </section>
-
-      <!-- Options Page -->
-      <section class="page options js-options is-hidden">
+    <!-- Error -->
+    <section class="page error js-error is-hidden">
+      <div>
         <header>
-          <h1>Options</h1>
-          <nav class="js-options-nav">
-              <ul>
-                <li tab-content="pinned-tabs">Pinned Tabs</li>
-                <li tab-content="popup-windows">Pop Up Windows</li>
-              </ul>
-            </nav>
+          <h1>Oops...</h1>
         </header>
-
         <main>
-          <section id="pinned-tabs">
-            <p>Please add the URLs of tabs you would like to have permenantly
-              pinned in all your Windows.</p>
-            <ul class="pinned-tabs js-pinned-tabs"></ul>
-            <div class="js-pinned-tabs-controls"></div>
-          </section>
-
-          <section id="popup-windows">
-            <p>Please add the URLs of tabs you would like opened in a
-              pop-up window.</p>
-            <p><strong>Warning:</strong> This feels spammy pretty quickly
-            if you add lots of URLs.</p>
-            <ul class="popup-window-urls js-popup-window-urls"></ul>
-            <div class="js-popup-window-urls-controls"></div>
-          </section>
+          <h2 class="js-error__msg"></h2>
         </main>
-      </section>
+      </div>
+    </section>
 
-      <script src="./controllers/options-page.js" async></script>
-    </body>
-  </html>
+    <!-- Options Page -->
+    <section class="page options js-options is-hidden">
+      <header>
+        <h1>Options</h1>
+        <nav class="js-options-nav">
+          <ul>
+            <li tab-content="pinned-tabs">Pinned Tabs</li>
+            <li tab-content="popup-windows">Pop Up Windows</li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <section id="pinned-tabs">
+          <p>
+            Please add the URLs of tabs you would like to have permenantly
+            pinned in all your Windows.
+          </p>
+          <ul class="pinned-tabs js-pinned-tabs"></ul>
+          <div class="js-pinned-tabs-controls"></div>
+        </section>
+
+        <section id="popup-windows">
+          <p>
+            Please add the URLs of tabs you would like opened in a pop-up
+            window.
+          </p>
+          <p>
+            <strong>Warning:</strong> This feels spammy pretty quickly if you
+            add lots of URLs.
+          </p>
+          <ul class="popup-window-urls js-popup-window-urls"></ul>
+          <div class="js-popup-window-urls-controls"></div>
+        </section>
+      </main>
+    </section>
+
+    <script src="./controllers/options-page.js" async></script>
+  </body>
+</html>

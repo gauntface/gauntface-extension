@@ -8,4 +8,4 @@ node_js:
   - "node" # Latest node version
 
 script:
-- npm run build
+  - npm run build

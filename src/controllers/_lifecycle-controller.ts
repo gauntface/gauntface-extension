@@ -1,9 +1,12 @@
-import { browser, Runtime, Storage } from 'webextension-polyfill-ts';
-import {updateAllWindows} from './_window-controller';
-import {logger} from '../utils/_logger';
-import { configurePanels } from './_panels';
-import {URLS_TO_PIN_STORAGE_KEY, PINNED_TABS_STORAGE_KEY} from '../models/_pinned-tabs';
-import {POPUP_STORAGE_KEY} from '../models/_popup-urls';
+import { browser, Runtime, Storage } from "webextension-polyfill-ts";
+import { updateAllWindows } from "./_window-controller";
+import { logger } from "../utils/_logger";
+import { configurePanels } from "./_panels";
+import {
+  URLS_TO_PIN_STORAGE_KEY,
+  PINNED_TABS_STORAGE_KEY,
+} from "../models/_pinned-tabs";
+import { POPUP_STORAGE_KEY } from "../models/_popup-urls";
 
 async function logTabs() {
   const tabs = await browser.tabs.query({
@@ -21,27 +24,30 @@ export async function onExtensionStartup() {
   await logTabs();
 
   // setTimeout(async () => {
-    logger.log(`onExtensionStartup() Running.....`);
+  logger.log(`onExtensionStartup() Running.....`);
 
-    logger.log(`Tabs before hand.....`);
-    await logTabs();
+  logger.log(`Tabs before hand.....`);
+  await logTabs();
 
-    await updateAllWindows();
-    await configurePanels();
+  await updateAllWindows();
+  await configurePanels();
 
-    logger.log(`Tabs after hand.....`);
-    await logTabs();
+  logger.log(`Tabs after hand.....`);
+  await logTabs();
   // }, waitS * 1000);
 }
 
 export async function onInstalled(details: Runtime.OnInstalledDetailsType) {
   logger.log(`onInstalled() reason: ${details.reason}`);
-  if (details.reason === 'install') {
+  if (details.reason === "install") {
     await browser.runtime.openOptionsPage();
   }
 }
 
-export async function onStorageChange(changes: Storage.OnChangedChangesType, areaName: string) {
+export async function onStorageChange(
+  changes: Storage.StorageChange,
+  areaName: string
+) {
   for (const changeKey of Object.keys(changes)) {
     logger.log(`onStorageChange() changeKey: ${changeKey}`);
     switch (changeKey) {
@@ -55,7 +61,11 @@ export async function onStorageChange(changes: Storage.OnChangedChangesType, are
         // NOOP
         break;
       default:
-        logger.warn(`An untracked storage change occured on '${changeKey}'`, changes, areaName);
+        logger.warn(
+          `An untracked storage change occured on '${changeKey}'`,
+          changes,
+          areaName
+        );
     }
   }
 }

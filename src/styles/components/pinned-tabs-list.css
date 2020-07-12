@@ -5,14 +5,14 @@
   outline: none;
 }
 
-.pinned-tabs[contenteditable=true] {
+.pinned-tabs[contenteditable="true"] {
   border: solid;
   padding: 12px;
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
 
-.pinned-tabs[contenteditable=true]:after {
-  content: '...pst, hit a new line to add a URL';
+.pinned-tabs[contenteditable="true"]:after {
+  content: "...pst, hit a new line to add a URL";
   display: block;
   text-align: right;
   font-weight: bold;
