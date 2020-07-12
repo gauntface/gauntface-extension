@@ -25,10 +25,7 @@ export async function getConfiguredWindows(): Promise<number[]> {
 export async function configurePinnedTabs(windowID: number): Promise<void> {
   const pinnedTabs = await getPinnedTabsInfo();
 
-  logger.log(
-    `Configuring tabs in window ${windowID}, currrent config: `,
-    pinnedTabs[windowID]
-  );
+  logger.log(`Configuring tabs in window ${windowID}`);
 
   const urlsToPin = await getUrlsToPin();
   const currentlyManagedTabs = pinnedTabs[windowID] || {};
@@ -74,7 +71,7 @@ export async function configurePinnedTabs(windowID: number): Promise<void> {
       });
     }
   } catch (err) {
-    logger.error(err);
+    logger.error(`Failed to create and / or update tabs: `, err);
   }
 
   // Delete any open tabs we are controlling.
@@ -86,7 +83,7 @@ export async function configurePinnedTabs(windowID: number): Promise<void> {
       }
     }
   } catch (err) {
-    logger.error(err);
+    logger.error(`Failed to delete any open tabs that we control: `, err);
   }
   pinnedTabs[windowID] = currentlyManagedTabs;
   logger.log(
