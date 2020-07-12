@@ -1,4 +1,4 @@
-import {getPopupURLs} from '../models/_popup-urls';
+import { getPopupURLs } from "../models/_popup-urls";
 import { browser } from "webextension-polyfill-ts";
 
 export async function configurePanels() {
@@ -13,7 +13,7 @@ export async function configurePanels() {
     const panelWindows = [];
     for (const tab of tabs) {
       const w = await browser.windows.get(tab.windowId);
-      if (w.type === 'popup') {
+      if (w.type === "popup") {
         panelWindows.push(w);
       }
     }
@@ -22,13 +22,13 @@ export async function configurePanels() {
       for (let j = 1; j < panelWindows.length; j++) {
         browser.windows.remove(panelWindows[j].id);
       }
-    } else if(panelWindows.length === 0) {
+    } else if (panelWindows.length === 0) {
       const window = await browser.windows.create({
         width: 600,
         height: 340,
         left: 100 * i,
         top: 100 * i,
-        type: 'popup',
+        type: "popup",
         focused: true,
         // tslint:disable-next-line:no-any
       } as any);

@@ -1,14 +1,14 @@
 import { Windows, Tabs, browser } from "webextension-polyfill-ts";
-import {logger} from '../utils/_logger';
+import { logger } from "../utils/_logger";
 import { configurePinnedTabs, getConfiguredWindows } from "./_pinned-tabs";
 
 export async function updateAllWindows() {
   const configuredWindowIDs = await getConfiguredWindows();
-  logger.debug('Updating all windows', configuredWindowIDs);
+  logger.debug("Updating all windows", configuredWindowIDs);
   for (const windowID of configuredWindowIDs) {
     try {
       const window = await browser.windows.get(windowID);
-      if (window.type !== 'normal') {
+      if (window.type !== "normal") {
         continue;
       }
       const tabs = await browser.tabs.query({
@@ -25,14 +25,14 @@ export async function updateAllWindows() {
 }
 
 export async function onWindowCreated(window: Windows.Window) {
-  if (window.type === 'normal') {
-    logger.debug('New window created');
-    
+  if (window.type === "normal") {
+    logger.debug("New window created");
+
     const tabs = await browser.tabs.query({
       windowId: window.id,
     });
 
-    if (tabs.length === 0 || tabs[0].url === 'chrome://newtab/') {
+    if (tabs.length === 0 || tabs[0].url === "chrome://newtab/") {
       logger.log(`Configuring tabs in new window: `, window);
       await configurePinnedTabs(window.id);
     }

@@ -1,6 +1,12 @@
-import { browser } from 'webextension-polyfill-ts';
-import {logger} from '../utils/_logger';
-import {getUrlsToPin, getPinnedTabsInfo, setPinnedTabsInfo, WindowToPinnedTabMap, PinnedTabInfo} from '../models/_pinned-tabs';
+import { browser } from "webextension-polyfill-ts";
+import { logger } from "../utils/_logger";
+import {
+  getUrlsToPin,
+  getPinnedTabsInfo,
+  setPinnedTabsInfo,
+  WindowToPinnedTabMap,
+  PinnedTabInfo,
+} from "../models/_pinned-tabs";
 
 export async function getConfiguredWindows(): Promise<number[]> {
   const pinnedTabs = await getPinnedTabsInfo();
@@ -19,7 +25,7 @@ export async function getConfiguredWindows(): Promise<number[]> {
 export async function configurePinnedTabs(windowID: number): Promise<void> {
   const pinnedTabs = await getPinnedTabsInfo();
 
-  logger.log(`Configuring tabs in window ${windowID}, currrent config: `, pinnedTabs[windowID]);
+  logger.log(`Configuring tabs in window ${windowID}`);
 
   const urlsToPin = await getUrlsToPin();
   const currentlyManagedTabs = pinnedTabs[windowID] || {};
@@ -29,7 +35,11 @@ export async function configurePinnedTabs(windowID: number): Promise<void> {
     const missingTabs: string[] = [];
     for (let i = 0; i < urlsToPin.length; i++) {
       const url = urlsToPin[i];
-      const currentTabID = await findPinnedTab(windowID, currentlyManagedTabs[url], url);
+      const currentTabID = await findPinnedTab(
+        windowID,
+        currentlyManagedTabs[url],
+        url
+      );
       if (currentTabID) {
         console.debug(`Moving tab ${currentTabID} for ${url}`);
         /**await browser.tabs.move(currentTabID, {
@@ -56,12 +66,12 @@ export async function configurePinnedTabs(windowID: number): Promise<void> {
     for (let i = 0; i < urlsToPin.length; i++) {
       const value = currentlyManagedTabs[urlsToPin[i]];
       await browser.tabs.move(value.latestTabID, {
-          // Position in a specific order
-          index: i,
+        // Position in a specific order
+        index: i,
       });
     }
   } catch (err) {
-    logger.error(err);
+    logger.error(`Failed to create and / or update tabs: `, err);
   }
 
   // Delete any open tabs we are controlling.
@@ -73,14 +83,21 @@ export async function configurePinnedTabs(windowID: number): Promise<void> {
       }
     }
   } catch (err) {
-    logger.error(err);
+    logger.error(`Failed to delete any open tabs that we control: `, err);
   }
   pinnedTabs[windowID] = currentlyManagedTabs;
-  logger.log(`Configuring tabs in window ${windowID}, new config: `, pinnedTabs[windowID]);
+  logger.log(
+    `Configuring tabs in window ${windowID}, new config: `,
+    pinnedTabs[windowID]
+  );
   await setPinnedTabsInfo(pinnedTabs);
 }
 
-async function findPinnedTab(windowID: number, tabInfo: PinnedTabInfo|undefined, url: string): Promise<null|number> {
+async function findPinnedTab(
+  windowID: number,
+  tabInfo: PinnedTabInfo | undefined,
+  url: string
+): Promise<null | number> {
   if (!tabInfo) {
     return null;
   }
@@ -129,11 +146,11 @@ async function createNewTab(url: string): Promise<PinnedTabInfo> {
   };
   await new Promise((resolve) => {
     let lastUpdate = null;
-    let timeoutID: NodeJS.Timeout|null = null;
+    let timeoutID: NodeJS.Timeout | null = null;
     const QUIET_PERIOD_SECS = 1;
     const listener = (tabId: number, info: any) => {
       lastUpdate = Date.now();
-      if (info.status === 'complete') {
+      if (info.status === "complete") {
         if (timeoutID) {
           clearTimeout(timeoutID);
         }

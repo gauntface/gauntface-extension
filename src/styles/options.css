@@ -13,7 +13,7 @@ nav ul {
   padding: 0;
   margin: 0;
   font-size: 1.2em;
-  font-family: 'Arvo';
+  font-family: "Arvo";
 }
 
 nav ul li {
@@ -26,7 +26,8 @@ nav ul li.is-selected {
   border-bottom-style: solid;
 }
 
-.page.sign-in, .page.error {
+.page.sign-in,
+.page.error {
   max-width: 600px;
   margin: 0 auto;
   width: 100%;
@@ -52,7 +53,8 @@ nav ul li.is-selected {
   display: block;
 }
 
-.page.options header, .page.options main {
+.page.options header,
+.page.options main {
   max-width: 800px;
   margin: 0 auto;
 }
