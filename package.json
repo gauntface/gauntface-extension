@@ -19,7 +19,7 @@
     "tslint": "6.1.3"
   },
   "dependencies": {
-    "@hopin/logger": "2.0.72",
+    "@hopin/logger": "2.0.73",
     "webextension-polyfill-ts": "0.20.0"
   },
   "author": "gauntface",
