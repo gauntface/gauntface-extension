@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@hopin/logger": "2.0.78",
-    "webextension-polyfill-ts": "0.20.0"
+    "webextension-polyfill-ts": "0.21.0"
   },
   "author": "gauntface",
   "license": "Apache-2.0",
