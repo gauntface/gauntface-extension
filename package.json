@@ -7,7 +7,7 @@
   "devDependencies": {
     "@hopin/wbt-ts-browser": "0.0.126",
     "archiver": "5.3.0",
-    "fs-extra": "9.1.0",
+    "fs-extra": "10.0.0",
     "glob": "7.1.6",
     "gulp": "4.0.2",
     "gulp-imagemin": "7.1.0",
