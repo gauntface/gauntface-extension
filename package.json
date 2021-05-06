@@ -8,7 +8,7 @@
     "@hopin/wbt-ts-browser": "0.0.126",
     "archiver": "5.3.0",
     "fs-extra": "10.0.0",
-    "glob": "7.1.6",
+    "glob": "7.1.7",
     "gulp": "4.0.2",
     "gulp-imagemin": "7.1.0",
     "gulp-rename": "2.0.0",
